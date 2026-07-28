@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashi's Kitchen — Anjar Foods & Beverages Pvt Ltd | Franchise & Investment</title>
+<meta name="description" content="Home-made veg & non-veg food business, franchised without a kitchen. Since 1990. Investment from ₹25,000, 80% profit margin, 0-month ROI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,600&family=Manrope:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#0c2a1a;
+    --forest-2:#123420;
+    --forest-3:#0a2016;
+    --gold:#e8a93b;
+    --gold-light:#f4cd7d;
+    --cream:#faf5e8;
+    --cream-2:#f2ead6;
+    --chili:#c1442e;
+    --ink:#141912;
+    --ink-soft:#3f473d;
+    --sage:#9db5a1;
+    --line: rgba(232,169,59,0.25);
+    --space-1: 0.5rem;
+    --space-2: 1rem;
+    --space-3: 1.5rem;
+    --space-4: 2.5rem;
+    --space-5: 4rem;
+    --space-6: 6rem;
+    --space-7: 9rem;
+    --radius-s: 10px;
+    --radius-m: 20px;
+    --radius-l: 32px;
+    --ease: cubic-bezier(.22,1,.36,1);
+  }
+
+  *,*::before,*::after{ box-sizing: border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family:'Manrope', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x:hidden;
+  }
+  img,canvas{ display:block; max-width:100%; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ margin:0; padding:0; list-style:none; }
+  h1,h2,h3{ font-family:'Fraunces', serif; margin:0; line-height:1.05; font-weight:700; }
+  p{ margin:0; }
+  button{ font-family:inherit; cursor:pointer; border:none; background:none; }
+
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    font-size:.72rem;
+    font-weight:700;
+  }
+
+  .num{ font-family:'Space Mono', monospace; }
+
+  /* grain overlay for warmth */
+  #grain{
+    position:fixed; inset:0; pointer-events:none; z-index:999;
+    opacity:.045; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  .container{ max-width:1180px; margin:0 auto; padding:0 var(--space-3); }
+  section{ position:relative; }
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .8s var(--ease), transform .8s var(--ease); }
+  .reveal.is-visible{ opacity:1; transform:translateY(0); }
+  .reveal-stagger > *{ opacity:0; transform:translateY(24px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
+  .reveal-stagger.is-visible > *{ opacity:1; transform:translateY(0); }
+  .reveal-stagger.is-visible > *:nth-child(1){ transition-delay:.03s; }
+  .reveal-stagger.is-visible > *:nth-child(2){ transition-delay:.11s; }
+  .reveal-stagger.is-visible > *:nth-child(3){ transition-delay:.19s; }
+  .reveal-stagger.is-visible > *:nth-child(4){ transition-delay:.27s; }
+  .reveal-stagger.is-visible > *:nth-child(5){ transition-delay:.35s; }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex; align-items:center; gap:.5rem;
+    padding:.95rem 1.6rem; border-radius:100px;
+    font-weight:700; font-size:.95rem;
+    transition:transform .35s var(--ease), box-shadow .35s var(--ease), background .3s;
+    white-space:nowrap;
+  }
+  .btn-primary{ background:var(--gold); color:var(--forest-3); box-shadow:0 10px 24px -8px rgba(232,169,59,.55); }
+  .btn-primary:hover{ transform:translateY(-3px); box-shadow:0 16px 30px -8px rgba(232,169,59,.65); }
+  .btn-ghost{ border:1.5px solid rgba(250,245,232,.4); color:var(--cream); }
+  .btn-ghost:hover{ background:rgba(250,245,232,.1); transform:translateY(-3px); }
+  .btn-dark{ background:var(--forest); color:var(--cream); }
+  .btn-dark:hover{ transform:translateY(-3px); box-shadow:0 14px 26px -10px rgba(12,42,26,.5); }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; border-radius:6px; }
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position:fixed; top:0; left:0; right:0; z-index:500;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:1.1rem clamp(1.2rem,4vw,3rem);
+    background:rgba(12,42,26,.55);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(232,169,59,.12);
+    transition:padding .35s var(--ease), background .35s var(--ease);
+  }
+  .nav.is-scrolled{ padding:.7rem clamp(1.2rem,4vw,3rem); background:rgba(10,32,22,.88); }
+  .brand{ display:flex; align-items:center; gap:.7rem; }
+  .brand-mark{
+    width:42px; height:42px; border-radius:50%;
+    background:radial-gradient(circle at 32% 28%, var(--gold-light), var(--gold) 55%, #b57f22 100%);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-weight:900; font-size:.85rem; color:var(--forest-3);
+    box-shadow:0 4px 14px -4px rgba(0,0,0,.5);
+    flex-shrink:0;
+  }
+  .brand-text{ display:flex; flex-direction:column; line-height:1.15; }
+  .brand-text strong{ color:var(--cream); font-family:'Fraunces',serif; font-size:1.05rem; font-weight:700; }
+  .brand-text span{ color:var(--sage); font-size:.68rem; letter-spacing:.06em; }
+
+  .nav-links{ display:flex; align-items:center; gap:2.1rem; }
+  .nav-links a{ color:var(--cream); font-size:.88rem; font-weight:600; opacity:.82; position:relative; }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:-6px; width:0; height:1.5px; background:var(--gold);
+    transition:width .3s var(--ease);
+  }
+  .nav-links a:hover{ opacity:1; }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-cta{ display:flex; align-items:center; gap:1.4rem; }
+  .nav-cta .btn{ padding:.68rem 1.3rem; font-size:.82rem; }
+  .nav-burger{ display:none; width:38px; height:38px; border-radius:8px; align-items:center; justify-content:center; }
+  .nav-burger span, .nav-burger::before, .nav-burger::after{ display:none; }
+  .burger-icon{ width:20px; height:14px; position:relative; }
+  .burger-icon i{ position:absolute; left:0; width:100%; height:1.6px; background:var(--cream); border-radius:2px; transition:transform .3s var(--ease), opacity .3s; }
+  .burger-icon i:nth-child(1){ top:0; }
+  .burger-icon i:nth-child(2){ top:6px; }
+  .burger-icon i:nth-child(3){ top:12px; }
+  .nav.menu-open .burger-icon i:nth-child(1){ transform:translateY(6px) rotate(45deg); }
+  .nav.menu-open .burger-icon i:nth-child(2){ opacity:0; }
+  .nav.menu-open .burger-icon i:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
+
+  .mobile-panel{
+    position:fixed; inset:0 0 0 auto; width:min(84vw,340px); top:0; height:100vh;
+    background:var(--forest-3); z-index:600; padding:6.5rem 2rem 2rem;
+    display:flex; flex-direction:column; gap:1.6rem;
+    transform:translateX(100%); transition:transform .5s var(--ease);
+  }
+  .mobile-panel.is-open{ transform:translateX(0); }
+  .mobile-panel a{ color:var(--cream); font-family:'Fraunces',serif; font-size:1.5rem; font-weight:600; }
+  .panel-backdrop{ position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:550; opacity:0; pointer-events:none; transition:opacity .4s; }
+  .panel-backdrop.is-open{ opacity:1; pointer-events:auto; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height:100vh;
+    background:
+      radial-gradient(ellipse 60% 50% at 85% 12%, rgba(232,169,59,.16), transparent 60%),
+      radial-gradient(ellipse 55% 45% at 8% 85%, rgba(193,68,46,.14), transparent 60%),
+      linear-gradient(160deg, var(--forest-3), var(--forest) 55%, var(--forest-2));
+    position:relative; overflow:hidden;
+    display:flex; align-items:center;
+    padding:8rem clamp(1.2rem,4vw,3rem) 6rem;
+  }
+  .hero-blob{
+    position:absolute; border-radius:50%; filter:blur(70px); opacity:.35; pointer-events:none;
+    animation:float 14s ease-in-out infinite;
+  }
+  .hero-blob.b1{ width:420px; height:420px; background:var(--gold); top:-140px; right:-100px; }
+  .hero-blob.b2{ width:340px; height:340px; background:var(--chili); bottom:-140px; left:-80px; animation-delay:-6s; }
+  @keyframes float{ 0%,100%{ transform:translate(0,0);} 50%{ transform:translate(-20px,26px);} }
+
+  .hero-grid{
+    position:relative; z-index:2; width:100%; max-width:1180px; margin:0 auto;
+    display:grid; grid-template-columns:1.05fr .95fr; gap:2rem; align-items:center;
+  }
+  .hero-copy .eyebrow{ color:var(--gold-light); }
+  .hero-copy h1{
+    color:var(--cream);
+    font-size:clamp(3rem, 6.4vw, 5.4rem);
+    margin:.9rem 0 .3rem;
+    letter-spacing:-.01em;
+  }
+  .hero-copy h1 em{ color:var(--gold); font-style:italic; font-weight:600; }
+  .hero-sub{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:500;
+    color:var(--sage); font-size:1.25rem; margin-bottom:1.6rem;
+  }
+  .hero-copy p.lead{
+    color:rgba(250,245,232,.78); font-size:1.08rem; line-height:1.65; max-width:34rem; margin-bottom:2.1rem;
+  }
+  .hero-ctas{ display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:2.6rem; }
+  .hero-stats{ display:flex; gap:2.2rem; flex-wrap:wrap; }
+  .hero-stat strong{
+    display:block; font-family:'Space Mono',monospace; font-size:2rem; color:var(--gold-light); font-weight:700;
+  }
+  .hero-stat span{ color:var(--sage); font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; }
+
+  .hero-visual{ position:relative; height:520px; }
+  #tiffin-canvas{ position:absolute; inset:0; width:100%; height:100%; touch-action:none; }
+  .hero-visual-caption{
+    position:absolute; bottom:6px; left:50%; transform:translateX(-50%);
+    font-family:'Space Mono',monospace; font-size:.7rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--sage); opacity:.7; text-align:center; width:100%;
+  }
+
+  .scroll-cue{
+    position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); z-index:3;
+    display:flex; flex-direction:column; align-items:center; gap:.5rem; color:var(--sage);
+  }
+  .scroll-cue .line{ width:1px; height:34px; background:linear-gradient(var(--gold), transparent); animation:scrollline 1.8s ease-in-out infinite; }
+  @keyframes scrollline{ 0%{ transform:scaleY(0); transform-origin:top;} 50%{ transform:scaleY(1); transform-origin:top;} 51%{ transform-origin:bottom;} 100%{ transform:scaleY(0); transform-origin:bottom;} }
+  .scroll-cue span{ font-family:'Space Mono',monospace; font-size:.65rem; letter-spacing:.14em; text-transform:uppercase; }
+
+  /* ---------- Marquee ticker ---------- */
+  .ticker-band{
+    background:var(--gold); color:var(--forest-3); overflow:hidden; position:relative; z-index:3;
+    padding:.9rem 0; border-top:1px solid rgba(12,42,26,.15); border-bottom:1px solid rgba(12,42,26,.15);
+  }
+  .ticker-track{ display:flex; width:max-content; animation:ticker 26s linear infinite; }
+  .ticker-track span{
+    font-family:'Space Mono',monospace; font-weight:700; font-size:.85rem; letter-spacing:.05em;
+    text-transform:uppercase; padding:0 1.6rem; display:flex; align-items:center; gap:1.6rem; white-space:nowrap;
+  }
+  .ticker-track span::after{ content:'◆'; font-size:.6rem; opacity:.6; }
+  @keyframes ticker{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
+  @media (prefers-reduced-motion: reduce){ .ticker-track{ animation-play-state: paused; } }
+
+  /* ---------- Section heads ---------- */
+  .section-head{ max-width:42rem; margin-bottom:var(--space-5); }
+  .section-head .eyebrow{ color:var(--chili); }
+  .section-head h2{ font-size:clamp(2.1rem,4vw,3.1rem); margin:.7rem 0 1rem; color:var(--ink); }
+  .section-head p{ color:var(--ink-soft); font-size:1.06rem; line-height:1.6; }
+  .section-head.on-dark h2, .section-head.on-dark p{ color:var(--cream); }
+  .section-head.on-dark p{ color:rgba(250,245,232,.72); }
+  .section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+
+  /* ---------- How it works ---------- */
+  #how{ background:var(--cream); padding:var(--space-7) 0 var(--space-6); }
+  .how-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1.4rem; }
+  .how-card{
+    background:#fff; border:1px solid var(--cream-2); border-radius:var(--radius-m);
+    padding:2rem 1.6rem; transition:transform .45s var(--ease), box-shadow .45s var(--ease), border-color .45s;
+  }
+  .how-card:hover{ transform:translateY(-8px); box-shadow:0 24px 40px -20px rgba(12,42,26,.22); border-color:var(--gold); }
+  .how-icon{
+    width:54px; height:54px; border-radius:16px; background:var(--forest);
+    display:flex; align-items:center; justify-content:center; margin-bottom:1.4rem;
+  }
+  .how-icon svg{ width:26px; height:26px; stroke:var(--gold); }
+  .how-card h3{ font-size:1.15rem; margin-bottom:.6rem; color:var(--ink); }
+  .how-card p{ color:var(--ink-soft); font-size:.94rem; line-height:1.55; }
+  .how-banner{
+    margin-top:2.4rem; background:var(--forest); border-radius:var(--radius-l);
+    padding:1.5rem 2rem; display:flex; flex-wrap:wrap; gap:1rem 2rem; justify-content:space-between; align-items:center;
+  }
+  .how-banner strong{ color:var(--cream); font-family:'Fraunces',serif; font-size:1.15rem; }
+  .how-tags{ display:flex; gap:.6rem; flex-wrap:wrap; }
+  .how-tags span{
+    font-family:'Space Mono',monospace; font-size:.72rem; text-transform:uppercase; letter-spacing:.05em;
+    color:var(--gold-light); border:1px solid rgba(232,169,59,.4); padding:.4rem .8rem; border-radius:100px;
+  }
+
+  /* ---------- Models ---------- */
+  #models{ background:var(--forest-3); padding:var(--space-7) 0 var(--space-6); position:relative; overflow:hidden; }
+  #models::before{
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(ellipse 50% 40% at 90% 0%, rgba(232,169,59,.1), transparent 60%);
+  }
+  .models-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.6rem; position:relative; z-index:2; }
+  .model-card{
+    background:linear-gradient(165deg, var(--forest-2), var(--forest));
+    border:1px solid rgba(232,169,59,.18); border-radius:var(--radius-l);
+    padding:2.2rem; position:relative; overflow:hidden;
+    transform-style:preserve-3d; transition:transform .12s linear, box-shadow .4s var(--ease), border-color .4s;
+  }
+  .model-card:hover{ border-color:var(--gold); box-shadow:0 30px 60px -24px rgba(0,0,0,.55); }
+  .model-card.featured{ background:linear-gradient(165deg, #1c4a2c, var(--forest-2)); border-color:var(--gold); }
+  .model-tag{
+    font-family:'Space Mono',monospace; font-size:.68rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--gold-light); display:inline-block; margin-bottom:1rem;
+  }
+  .model-card h3{ color:var(--cream); font-size:1.5rem; margin-bottom:.3rem; }
+  .model-card .model-for{ color:var(--sage); font-size:.86rem; margin-bottom:1.4rem; font-style:italic; font-family:'Fraunces',serif; }
+  .model-price{ display:flex; align-items:baseline; gap:.4rem; margin-bottom:.2rem; }
+  .model-price .num{ font-size:2.1rem; color:var(--gold-light); font-weight:700; }
+  .model-price small{ color:var(--sage); font-size:.75rem; }
+  .model-note{ color:rgba(250,245,232,.5); font-size:.76rem; margin-bottom:1.6rem; }
+  .model-meta{ display:grid; grid-template-columns:1fr 1fr; gap:.9rem 1rem; margin-bottom:1.6rem; padding-top:1.4rem; border-top:1px solid rgba(232,169,59,.15); }
+  .model-meta div span{ display:block; color:var(--sage); font-size:.68rem; text-transform:uppercase; letter-spacing:.06em; margin-bottom:.25rem; }
+  .model-meta div strong{ color:var(--cream); font-family:'Space Mono',monospace; font-size:.92rem; }
+  .model-includes{ display:flex; flex-direction:column; gap:.55rem; }
+  .model-includes li{ display:flex; gap:.6rem; align-items:flex-start; color:rgba(250,245,232,.82); font-size:.87rem; line-height:1.4; }
+  .model-includes li svg{ width:16px; height:16px; flex-shrink:0; margin-top:.15rem; stroke:var(--gold); }
+
+  .models-table-wrap{ margin-top:3rem; overflow-x:auto; position:relative; z-index:2; }
+  table.compare{ width:100%; border-collapse:collapse; min-width:640px; }
+  table.compare th, table.compare td{ padding:1rem 1.1rem; text-align:left; border-bottom:1px solid rgba(232,169,59,.14); }
+  table.compare th{ color:var(--gold-light); font-family:'Space Mono',monospace; font-size:.72rem; text-transform:uppercase; letter-spacing:.06em; font-weight:700; }
+  table.compare td{ color:rgba(250,245,232,.85); font-size:.9rem; }
+  table.compare td:first-child, table.compare th:first-child{ color:var(--cream); font-weight:700; }
+  table.compare tbody tr:hover{ background:rgba(232,169,59,.05); }
+
+  /* ---------- Who it's for ---------- */
+  #who{ background:var(--cream); padding:var(--space-7) 0 var(--space-6); }
+  .who-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1.4rem; }
+  .who-card{
+    border-radius:var(--radius-m); overflow:hidden; position:relative; height:400px;
+    display:flex; flex-direction:column; justify-content:flex-end;
+    background-size:cover; background-position:center;
+    transition:transform .5s var(--ease);
+  }
+  .who-card::before{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(0deg, rgba(10,32,22,.94) 10%, rgba(10,32,22,.35) 55%, rgba(10,32,22,.05) 100%);
+  }
+  .who-card:hover{ transform:translateY(-8px); }
+  .who-inner{ position:relative; z-index:2; padding:1.6rem 1.4rem; color:var(--cream); }
+  .who-num{ font-family:'Space Mono',monospace; font-size:.72rem; color:var(--gold-light); letter-spacing:.08em; margin-bottom:.5rem; display:block; }
+  .who-inner h3{ font-size:1.2rem; margin-bottom:.5rem; }
+  .who-inner p{ font-size:.85rem; color:rgba(250,245,232,.78); line-height:1.5; }
+
+  /* ---------- Why choose us ---------- */
+  #why{ background:var(--forest); padding:var(--space-6) 0; overflow:hidden; }
+  .why-marquee{ display:flex; width:max-content; animation:ticker 22s linear infinite; gap:0; }
+  .why-marquee .why-item{
+    display:flex; align-items:center; gap:1rem; padding:0 2.6rem; white-space:nowrap;
+  }
+  .why-marquee .why-item svg{ width:30px; height:30px; stroke:var(--gold); flex-shrink:0; }
+  .why-marquee .why-item strong{ color:var(--cream); font-family:'Fraunces',serif; font-size:1.4rem; font-weight:600; }
+  .why-marquee .why-item i{ color:var(--gold); font-style:normal; font-size:1.3rem; }
+
+  /* ---------- Trial CTA ---------- */
+  #trial{ background:var(--cream); padding:var(--space-7) 0; }
+  .trial-card{
+    background:linear-gradient(135deg, var(--forest-3), var(--forest));
+    border-radius:var(--radius-l); padding:clamp(2rem,5vw,4rem); position:relative; overflow:hidden;
+    display:grid; grid-template-columns:1fr auto; gap:3rem; align-items:center;
+  }
+  .trial-card::after{
+    content:''; position:absolute; width:360px; height:360px; border-radius:50%;
+    background:radial-gradient(circle, rgba(232,169,59,.25), transparent 70%);
+    top:-140px; right:-100px;
+  }
+  .trial-copy{ position:relative; z-index:2; }
+  .trial-badge{
+    display:inline-flex; align-items:baseline; gap:.4rem; background:var(--gold); color:var(--forest-3);
+    padding:.5rem 1.1rem; border-radius:100px; font-family:'Space Mono',monospace; font-weight:700; font-size:.85rem; margin-bottom:1.3rem;
+  }
+  .trial-copy h2{ color:var(--cream); font-size:clamp(1.9rem,4vw,2.6rem); margin-bottom:1rem; }
+  .trial-list{ display:flex; flex-direction:column; gap:.7rem; margin-bottom:0; }
+  .trial-list li{ display:flex; gap:.7rem; align-items:flex-start; color:rgba(250,245,232,.85); font-size:.96rem; }
+  .trial-list li svg{ width:18px; height:18px; stroke:var(--gold); margin-top:.2rem; flex-shrink:0; }
+  .trial-actions{ position:relative; z-index:2; display:flex; flex-direction:column; gap:.9rem; }
+  .trial-actions .btn{ justify-content:center; }
+  .trial-phone{ color:var(--sage); font-size:.8rem; text-align:center; font-family:'Space Mono',monospace; }
+
+  /* ---------- Footer ---------- */
+  footer{ background:var(--forest-3); padding:var(--space-6) 0 2rem; }
+  .footer-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:3rem; padding-bottom:3rem; border-bottom:1px solid rgba(232,169,59,.15); }
+  .footer-brand .brand{ margin-bottom:1.1rem; }
+  .footer-brand p{ color:rgba(250,245,232,.6); font-size:.92rem; line-height:1.6; max-width:24rem; }
+  .footer-col h4{ color:var(--gold-light); font-family:'Space Mono',monospace; font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; margin-bottom:1.1rem; }
+  .footer-col a, .footer-col p{ display:block; color:rgba(250,245,232,.75); font-size:.92rem; margin-bottom:.7rem; line-height:1.5; }
+  .footer-col a:hover{ color:var(--gold-light); }
+  .footer-bottom{ display:flex; justify-content:space-between; align-items:center; padding-top:1.6rem; flex-wrap:wrap; gap:1rem; }
+  .footer-bottom p{ color:rgba(250,245,232,.45); font-size:.8rem; }
+
+  /* ---------- WhatsApp float ---------- */
+  .whatsapp-float{
+    position:fixed; bottom:1.8rem; right:1.8rem; z-index:400;
+    width:60px; height:60px; border-radius:50%; background:#25D366;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 30px -8px rgba(37,211,102,.6);
+  }
+  .whatsapp-float svg{ width:28px; height:28px; fill:#fff; }
+  .whatsapp-float::before{
+    content:''; position:absolute; inset:0; border-radius:50%; background:#25D366;
+    animation:pulse 2.4s ease-out infinite; z-index:-1;
+  }
+  @keyframes pulse{ 0%{ transform:scale(1); opacity:.55;} 100%{ transform:scale(1.9); opacity:0;} }
+
+  /* ---------- Counter helper ---------- */
+  .count-wrap{ display:inline-flex; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 980px){
+    .nav-links, .nav-cta .btn-ghost{ display:none; }
+    .nav-burger{ display:flex; }
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-visual{ height:360px; order:-1; }
+    .how-grid, .who-grid{ grid-template-columns:repeat(2,1fr); }
+    .models-grid{ grid-template-columns:1fr; }
+    .footer-grid{ grid-template-columns:1fr; gap:2.2rem; }
+    .trial-card{ grid-template-columns:1fr; }
+  }
+  @media (max-width: 600px){
+    .how-grid, .who-grid{ grid-template-columns:1fr; }
+    .who-card{ height:320px; }
+    .hero-ctas{ flex-direction:column; align-items:stretch; }
+    .hero-stats{ gap:1.4rem; }
+    table.compare thead{ display:none; }
+    table.compare, table.compare tbody, table.compare tr, table.compare td{ display:block; width:100%; }
+    table.compare tr{ margin-bottom:1.2rem; border:1px solid rgba(232,169,59,.16); border-radius:14px; padding:.4rem 1rem; }
+    table.compare td{ border-bottom:1px dashed rgba(232,169,59,.14); display:flex; justify-content:space-between; gap:1rem; }
+    table.compare td:last-child{ border-bottom:none; }
+    table.compare td::before{ content:attr(data-label); color:var(--gold-light); font-family:'Space Mono',monospace; font-size:.68rem; text-transform:uppercase; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<div id="grain"></div>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="siteNav">
+  <div class="brand">
+    <div class="brand-mark">AFB</div>
+    <div class="brand-text">
+      <strong>Ashi's Kitchen</strong>
+      <span>ANJAR FOODS &amp; BEVERAGES · SINCE 1990</span>
+    </div>
+  </div>
+  <nav class="nav-links">
+    <a href="#how">How it Works</a>
+    <a href="#models">Models</a>
+    <a href="#who">Who it's For</a>
+    <a href="#why">Why Us</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="nav-cta">
+    <a href="#trial" class="btn btn-ghost">Book Trial</a>
+    <a href="https://wa.me/917090579855?text=Hi%2C%20I%27m%20interested%20in%20the%20Ashi%27s%20Kitchen%20franchise" class="btn btn-primary">WhatsApp Us</a>
+    <button class="nav-burger" id="burgerBtn" aria-label="Open menu"><div class="burger-icon"><i></i><i></i><i></i></div></button>
+  </div>
+</header>
+
+<div class="panel-backdrop" id="panelBackdrop"></div>
+<aside class="mobile-panel" id="mobilePanel">
+  <a href="#how">How it Works</a>
+  <a href="#models">Models</a>
+  <a href="#who">Who it's For</a>
+  <a href="#why">Why Us</a>
+  <a href="#contact">Contact</a>
+  <a href="https://wa.me/917090579855" class="btn btn-primary" style="margin-top:1rem;">WhatsApp Us</a>
+</aside>
+
+<main>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="hero">
+    <div class="hero-blob b1"></div>
+    <div class="hero-blob b2"></div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Anjar Foods &amp; Beverages Pvt Ltd — Since 1990</p>
+        <h1>Ashi's<br><em>Kitchen</em></h1>
+        <p class="hero-sub">Home-made foods, veg &amp; non-veg — now open to franchise partners.</p>
+        <p class="lead">Three decades of home-style cooking, packaged into a franchise anyone can run. We handle the kitchen, the cooking and the delivery — you handle the business.</p>
+        <div class="hero-ctas">
+          <a href="#trial" class="btn btn-primary">Book the ₹999 Food Trial</a>
+          <a href="#models" class="btn btn-ghost">Explore Investment Models</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><strong class="js-count" data-target="36" data-suffix="+">0</strong><span>Years Since 1990</span></div>
+          <div class="hero-stat"><strong class="js-count" data-target="80" data-suffix="%">0</strong><span>Profit Margin</span></div>
+          <div class="hero-stat"><strong>0-Month</strong><span>Return on Investment</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <canvas id="tiffin-canvas"></canvas>
+        <p class="hero-visual-caption">The Ashi's Kitchen tiffin — drag to spin</p>
+      </div>
+    </div>
+    <div class="scroll-cue"><span>Scroll</span><div class="line"></div></div>
+  </section>
+
+  <!-- ================= TICKER ================= -->
+  <div class="ticker-band">
+    <div class="ticker-track">
+      <span>No Kitchen</span><span>No Chef</span><span>No Production</span><span>No Franchise Fees</span><span>Inviting Investors &amp; Franchisors</span><span>Since 1990</span>
+      <span>No Kitchen</span><span>No Chef</span><span>No Production</span><span>No Franchise Fees</span><span>Inviting Investors &amp; Franchisors</span><span>Since 1990</span>
+    </div>
+  </div>
+
+  <!-- ================= HOW IT WORKS ================= -->
+  <section id="how">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">How the Franchise Works</p>
+        <h2>We run the kitchen. You run the business.</h2>
+        <p>No commercial kitchen to build, no chef to hire, no production to manage — and no franchise fee to get started. Here's everything we take care of for every partner.</p>
+      </div>
+      <div class="how-grid reveal-stagger">
+        <div class="how-card">
+          <div class="how-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16M6 8v10a2 2 0 002 2h8a2 2 0 002-2V8M9 8V6a3 3 0 016 0v2"/></svg></div>
+          <h3>Vessels Provided</h3>
+          <p>Insulated carriers and serving vessels supplied to every partner — no upfront equipment shopping.</p>
+        </div>
+        <div class="how-card">
+          <div class="how-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3s-2 2-2 4a2 2 0 004 0c0-2-2-4-2-4zM14 3s-2 2-2 4a2 2 0 004 0c0-2-2-4-2-4zM4 13c0-1 1-2 2-2h12c1 0 2 1 2 2 0 5-4 8-8 8s-8-3-8-8z"/></svg></div>
+          <h3>Daily Hot Prepared Food</h3>
+          <p>Fresh batches cooked in our kitchen and prepared hot, delivered fresh every single day.</p>
+        </div>
+        <div class="how-card">
+          <div class="how-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+          <h3>Veg &amp; Non-Veg by Rate/Kg</h3>
+          <p>Order exactly what you need, priced per kilogram. Pay only for what you actually sell.</p>
+        </div>
+        <div class="how-card">
+          <div class="how-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="7" width="14" height="10" rx="1"/><path d="M15 10h3l3 3v4h-6z"/><circle cx="6" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/></svg></div>
+          <h3>Free Delivery</h3>
+          <p>Delivered to your location at no charge. Daily order cut-off at 7:00 PM.</p>
+        </div>
+      </div>
+      <div class="how-banner reveal">
+        <strong>Start with as little as ₹25,000</strong>
+        <div class="how-tags">
+          <span>No Kitchen</span><span>No Chef</span><span>No Production</span><span>No Franchise Fees</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MODELS ================= -->
+  <section id="models">
+    <div class="container">
+      <div class="section-head on-dark reveal">
+        <p class="eyebrow">Investment Models</p>
+        <h2>Three ways to partner with us</h2>
+        <p>From a home-based tiffin service to a fully company-built outlet — choose the model that matches your capital and ambition.</p>
+      </div>
+
+      <div class="models-grid reveal-stagger">
+        <div class="model-card js-tilt">
+          <span class="model-tag">Model 01</span>
+          <h3>Home Tiffin Partner</h3>
+          <p class="model-for">No kitchen · no chef · no production · no franchise fees</p>
+          <div class="model-price"><span class="num">₹25,000</span><small>starting investment</small></div>
+          <p class="model-note">Kits available up to ₹49,000 with full vessel set</p>
+          <div class="model-meta">
+            <div><span>Return on Investment</span><strong>0 Months</strong></div>
+            <div><span>Profit Margin</span><strong>80% on Sales</strong></div>
+          </div>
+          <ul class="model-includes">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Vessels &amp; carriers supplied</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Daily hot prepared food</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Veg &amp; non-veg by rate/kg</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Free delivery, 7 PM cut-off</li>
+          </ul>
+        </div>
+
+        <div class="model-card featured js-tilt">
+          <span class="model-tag">Model 02</span>
+          <h3>Company-Operated Café</h3>
+          <p class="model-for">We build it, you co-run it</p>
+          <div class="model-price"><span class="num">₹10,00,000</span></div>
+          <p class="model-note">Minimum space: 500 sq. ft.</p>
+          <div class="model-meta">
+            <div><span>Return on Investment</span><strong>3 Months</strong></div>
+            <div><span>Profit Sharing</span><strong>50/50 Weekly</strong></div>
+          </div>
+          <ul class="model-includes">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Shop advance covered</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Interiors &amp; exterior built</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Manpower hired &amp; paid</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Kitchen equipment &amp; accounts</li>
+          </ul>
+        </div>
+
+        <div class="model-card js-tilt">
+          <span class="model-tag">Model 03</span>
+          <h3>Company-Operated Restaurant</h3>
+          <p class="model-for">Full-scale dining outlet</p>
+          <div class="model-price"><span class="num">₹75,00,000</span></div>
+          <p class="model-note">Minimum space: 1500+ sq. ft.</p>
+          <div class="model-meta">
+            <div><span>Return on Investment</span><strong>6 Months</strong></div>
+            <div><span>Profit Sharing</span><strong>50/50 Weekly</strong></div>
+          </div>
+          <ul class="model-includes">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Shop advance covered</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Interiors &amp; exterior built</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Manpower hired &amp; paid</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Kitchen equipment &amp; accounts</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="models-table-wrap reveal">
+        <table class="compare">
+          <thead>
+            <tr><th>Model</th><th>Investment</th><th>ROI</th><th>Returns</th><th>Space Needed</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Model">Home Tiffin Partner</td>
+              <td data-label="Investment">₹25,000 – ₹49,000</td>
+              <td data-label="ROI">0 Months</td>
+              <td data-label="Returns">80% profit margin</td>
+              <td data-label="Space">Work from home</td>
+            </tr>
+            <tr>
+              <td data-label="Model">Company-Operated Café</td>
+              <td data-label="Investment">₹10,00,000</td>
+              <td data-label="ROI">3 Months</td>
+              <td data-label="Returns">50/50 weekly sharing</td>
+              <td data-label="Space">500 sq. ft. min</td>
+            </tr>
+            <tr>
+              <td data-label="Model">Company-Operated Restaurant</td>
+              <td data-label="Investment">₹75,00,000</td>
+              <td data-label="ROI">6 Months</td>
+              <td data-label="Returns">50/50 weekly sharing</td>
+              <td data-label="Space">1500+ sq. ft.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WHO IT'S FOR ================= -->
+  <section id="who">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Perfect Opportunity for Everyone</p>
+        <h2>Built for every kind of partner</h2>
+        <p>Whatever stage of life or business you're in, there's a way to run Ashi's Kitchen alongside it.</p>
+      </div>
+      <div class="who-grid reveal-stagger">
+        <div class="who-card" style="background-image:url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=60')">
+          <div class="who-inner"><span class="who-num">01</span><h3>Full-Time Students</h3><p>Earn while you learn — start a food business and stay financially independent through your studies.</p></div>
+        </div>
+        <div class="who-card" style="background-image:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=60')">
+          <div class="who-inner"><span class="who-num">02</span><h3>Part-Time Students</h3><p>Utilize your free time — build real experience and earn extra income around your schedule.</p></div>
+        </div>
+        <div class="who-card" style="background-image:url('https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=600&q=60')">
+          <div class="who-inner"><span class="who-num">03</span><h3>Home Makers</h3><p>Be your own boss — work from home, manage your own time, and support your family.</p></div>
+        </div>
+        <div class="who-card" style="background-image:url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=60')">
+          <div class="who-inner"><span class="who-num">04</span><h3>Food Businessmen</h3><p>Expand your business — add a profitable segment to your existing setup with zero hassle.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WHY CHOOSE US ================= -->
+  <section id="why">
+    <div class="why-marquee">
+      <div class="why-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg><strong>No Hassle Operations</strong></div>
+      <i>—</i>
+      <div class="why-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg><strong>High Profit Margin</strong></div>
+      <i>—</i>
+      <div class="why-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s6 5 6 11a6 6 0 01-12 0c0-6 6-11 6-11z"/></svg><strong>100% Fresh &amp; Hygienic Food</strong></div>
+      <i>—</i>
+      <div class="why-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><strong>Strong Brand Support</strong></div>
+      <i>—</i>
+      <div class="why-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg><strong>Daily Business Growth</strong></div>
+      <i>—</i>
+      <div class="why-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg><strong>No Hassle Operations</strong></div>
+      <i>—</i>
+      <div class="why-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg><strong>High Profit Margin</strong></div>
+      <i>—</i>
+      <div class="why-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s6 5 6 11a6 6 0 01-12 0c0-6 6-11 6-11z"/></svg><strong>100% Fresh &amp; Hygienic Food</strong></div>
+      <i>—</i>
+      <div class="why-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><strong>Strong Brand Support</strong></div>
+      <i>—</i>
+      <div class="why-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg><strong>Daily Business Growth</strong></div>
+      <i>—</i>
+    </div>
+  </section>
+
+  <!-- ================= TRIAL CTA ================= -->
+  <section id="trial">
+    <div class="container">
+      <div class="trial-card reveal">
+        <div class="trial-copy">
+          <span class="trial-badge">₹999 Registration</span>
+          <h2>Taste it before you invest</h2>
+          <ul class="trial-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Taste our variety of veg &amp; non-veg dishes</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Detailed business presentation</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Explore the partnership opportunity, in person</li>
+          </ul>
+        </div>
+        <div class="trial-actions">
+          <a href="https://wa.me/917090579855?text=Hi%2C%20I%27d%20like%20to%20book%20the%20%E2%82%B9999%20food%20trial" class="btn btn-primary">Book on WhatsApp</a>
+          <a href="tel:+917090579855" class="btn btn-ghost">Call 70905 79855</a>
+          <p class="trial-phone">Two-person trial · by appointment</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand">
+          <div class="brand-mark">AFB</div>
+          <div class="brand-text">
+            <strong style="color:var(--cream)">Ashi's Kitchen</strong>
+            <span>ANJAR FOODS &amp; BEVERAGES PVT LTD</span>
+          </div>
+        </div>
+        <p>Home-made veg &amp; non-veg food, cooked fresh daily since 1990 — now inviting investors and franchise partners to bring it to their own neighborhood.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Get in Touch</h4>
+        <a href="tel:+917090579855">70905 79855</a>
+        <a href="https://wa.me/917090579855">WhatsApp Us</a>
+        <a href="mailto:info@anjarfoods.com">info@anjarfoods.com</a>
+        <a href="https://www.anjarfoods.com" target="_blank" rel="noopener">www.anjarfoods.com</a>
+      </div>
+      <div class="footer-col">
+        <h4>Visit Us</h4>
+        <p>No 1723/D, 1st Floor,<br>K B Complex, MKK Road,<br>Rajajinagar, Bangalore 560010</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> Anjar Foods and Beverages Pvt Ltd. All rights reserved.</p>
+      <p>Ashi's Kitchen — Home Made Foods, Since 1990</p>
+    </div>
+  </div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/917090579855?text=Hi%2C%20I%27m%20interested%20in%20the%20Ashi%27s%20Kitchen%20franchise" aria-label="Chat on WhatsApp" target="_blank" rel="noopener">
+  <svg viewBox="0 0 32 32"><path d="M16.001 2.667c-7.364 0-13.334 5.97-13.334 13.333 0 2.353.616 4.66 1.787 6.687L2.667 29.333l6.826-1.79a13.27 13.27 0 006.508 1.706h.006c7.363 0 13.333-5.97 13.333-13.333 0-3.56-1.387-6.907-3.906-9.427a13.24 13.24 0 00-9.433-3.822zm0 24.4h-.005a11.05 11.05 0 01-5.636-1.543l-.404-.24-4.05 1.063 1.082-3.948-.264-.406a11.05 11.05 0 01-1.7-5.893c0-6.11 4.972-11.08 11.083-11.08 2.96 0 5.74 1.153 7.834 3.25a11 11 0 013.242 7.837c0 6.11-4.972 11.08-11.082 11.08zm6.08-8.297c-.334-.167-1.97-.973-2.276-1.084-.305-.11-.527-.166-.75.167-.222.333-.86 1.083-1.055 1.306-.194.222-.389.25-.722.083-.334-.166-1.408-.519-2.682-1.654-.992-.885-1.662-1.978-1.856-2.312-.194-.333-.02-.513.147-.68.15-.15.334-.389.5-.583.167-.194.222-.333.334-.556.11-.222.055-.417-.028-.583-.083-.167-.75-1.806-1.028-2.474-.271-.65-.546-.563-.75-.573l-.639-.011c-.222 0-.583.083-.888.417-.305.333-1.166 1.14-1.166 2.777s1.194 3.222 1.361 3.444c.167.222 2.35 3.588 5.694 5.032.795.343 1.416.548 1.9.702.798.254 1.524.218 2.098.132.64-.096 1.97-.805 2.248-1.583.278-.778.278-1.445.194-1.583-.083-.14-.305-.222-.639-.389z"/></svg>
+</a>
+
+<!-- Three.js (r128) for hero 3D tiffin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Nav scroll state ---------- */
+  var nav = document.getElementById('siteNav');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 40){ nav.classList.add('is-scrolled'); } else { nav.classList.remove('is-scrolled'); }
+  }, { passive:true });
+
+  /* ---------- Mobile menu ---------- */
+  var burger = document.getElementById('burgerBtn');
+  var panel = document.getElementById('mobilePanel');
+  var backdrop = document.getElementById('panelBackdrop');
+  function toggleMenu(open){
+    nav.classList.toggle('menu-open', open);
+    panel.classList.toggle('is-open', open);
+    backdrop.classList.toggle('is-open', open);
+  }
+  burger.addEventListener('click', function(){ toggleMenu(!panel.classList.contains('is-open')); });
+  backdrop.addEventListener('click', function(){ toggleMenu(false); });
+  panel.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ toggleMenu(false); }); });
+
+  /* ---------- Scroll reveal ---------- */
+  var revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold:.15, rootMargin:'0px 0px -60px 0px' });
+  revealEls.forEach(function(el){ io.observe(el); });
+
+  /* ---------- Counters ---------- */
+  var counters = document.querySelectorAll('.js-count');
+  var counterIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(!entry.isIntersecting) return;
+      var el = entry.target;
+      var target = parseInt(el.getAttribute('data-target'), 10);
+      var suffix = el.getAttribute('data-suffix') || '';
+      var start = null;
+      var duration = 1400;
+      function step(ts){
+        if(!start) start = ts;
+        var progress = Math.min((ts-start)/duration, 1);
+        var eased = 1 - Math.pow(1-progress, 3);
+        el.textContent = Math.round(eased*target) + suffix;
+        if(progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      counterIO.unobserve(el);
+    });
+  }, { threshold:.6 });
+  counters.forEach(function(el){ counterIO.observe(el); });
+
+  /* ---------- Card tilt ---------- */
+  document.querySelectorAll('.js-tilt').forEach(function(card){
+    if(reducedMotion) return;
+    card.addEventListener('mousemove', function(e){
+      var r = card.getBoundingClientRect();
+      var x = (e.clientX - r.left)/r.width - .5;
+      var y = (e.clientY - r.top)/r.height - .5;
+      card.style.transform = 'perspective(900px) rotateY(' + (x*8) + 'deg) rotateX(' + (-y*8) + 'deg) translateY(-6px)';
+    });
+    card.addEventListener('mouseleave', function(){ card.style.transform = ''; });
+  });
+
+  /* ---------- Footer year ---------- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ================= THREE.JS TIFFIN SCENE ================= */
+  var canvas = document.getElementById('tiffin-canvas');
+  if(!canvas || !window.THREE) return;
+
+  var visual = canvas.parentElement;
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(38, visual.clientWidth/visual.clientHeight, 0.1, 100);
+  camera.position.set(0, 1.1, 7.2);
+
+  var renderer = new THREE.WebGLRenderer({ canvas:canvas, antialias:true, alpha:true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(visual.clientWidth, visual.clientHeight);
+
+  /* Lights */
+  scene.add(new THREE.AmbientLight(0x8fa895, 0.7));
+  var keyLight = new THREE.DirectionalLight(0xf4cd7d, 1.5);
+  keyLight.position.set(4, 6, 5);
+  scene.add(keyLight);
+  var rimLight = new THREE.DirectionalLight(0x4a8f66, 0.9);
+  rimLight.position.set(-5, -2, -4);
+  scene.add(rimLight);
+  var fillLight = new THREE.PointLight(0xe8a93b, 0.6, 20);
+  fillLight.position.set(-3, 2, 4);
+  scene.add(fillLight);
+
+  /* Tiffin group */
+  var tiffin = new THREE.Group();
+  scene.add(tiffin);
+
+  var steelMat = new THREE.MeshStandardMaterial({ color:0xc44b34, metalness:0.35, roughness:0.38 });
+  var lidMat = new THREE.MeshStandardMaterial({ color:0xa8382a, metalness:0.4, roughness:0.32 });
+  var goldMat = new THREE.MeshStandardMaterial({ color:0xe8a93b, metalness:0.75, roughness:0.28 });
+  var darkMat = new THREE.MeshStandardMaterial({ color:0x1b1b1b, metalness:0.5, roughness:0.5 });
+
+  var tierHeight = 0.62;
+  var tierRadius = 1.15;
+  var tierCount = 3;
+  var totalHeight = tierHeight*tierCount;
+  var startY = -totalHeight/2 + tierHeight/2;
+
+  for(var i=0;i<tierCount;i++){
+    var r = tierRadius - i*0.015;
+    var geo = new THREE.CylinderGeometry(r, r+0.03, tierHeight, 48);
+    var mesh = new THREE.Mesh(geo, i === tierCount-1 ? lidMat : steelMat);
+    mesh.position.y = startY + i*tierHeight;
+    tiffin.add(mesh);
+
+    if(i < tierCount-1){
+      var rimGeo = new THREE.TorusGeometry(r+0.02, 0.035, 12, 48);
+      var rim = new THREE.Mesh(rimGeo, goldMat);
+      rim.rotation.x = Math.PI/2;
+      rim.position.y = startY + i*tierHeight + tierHeight/2;
+      tiffin.add(rim);
+    }
+
+    var latchGeo = new THREE.BoxGeometry(0.09, tierHeight*0.5, 0.06);
+    var latch = new THREE.Mesh(latchGeo, darkMat);
+    latch.position.set(0, startY + i*tierHeight, r+0.03);
+    tiffin.add(latch);
+  }
+
+  /* base cap */
+  var baseGeo = new THREE.CylinderGeometry(tierRadius+0.05, tierRadius+0.05, 0.08, 48);
+  var base = new THREE.Mesh(baseGeo, darkMat);
+  base.position.y = startY - tierHeight/2 - 0.02;
+  tiffin.add(base);
+
+  /* top lid dome */
+  var domeGeo = new THREE.SphereGeometry(tierRadius-0.02, 32, 16, 0, Math.PI*2, 0, Math.PI/2.4);
+  var dome = new THREE.Mesh(domeGeo, lidMat);
+  dome.position.y = startY + (tierCount-1)*tierHeight + tierHeight/2;
+  tiffin.add(dome);
+
+  /* handle (arch) */
+  var handleGeo = new THREE.TorusGeometry(0.62, 0.06, 12, 48, Math.PI*1.15);
+  var handle = new THREE.Mesh(handleGeo, goldMat);
+  handle.position.y = startY + (tierCount-1)*tierHeight + tierHeight/2 + 0.55;
+  handle.rotation.z = Math.PI + (Math.PI - 1.15*Math.PI)/2;
+  tiffin.add(handle);
+
+  tiffin.scale.set(0.62,0.62,0.62);
+  tiffin.position.y = -0.2;
+
+  /* Steam particles */
+  var steamCanvas = document.createElement('canvas');
+  steamCanvas.width = 64; steamCanvas.height = 64;
+  var sctx = steamCanvas.getContext('2d');
+  var grad = sctx.createRadialGradient(32,32,0,32,32,32);
+  grad.addColorStop(0, 'rgba(250,245,232,0.9)');
+  grad.addColorStop(1, 'rgba(250,245,232,0)');
+  sctx.fillStyle = grad;
+  sctx.fillRect(0,0,64,64);
+  var steamTex = new THREE.CanvasTexture(steamCanvas);
+
+  var steamParticles = [];
+  var steamOriginY = startY + (tierCount-1)*tierHeight + tierHeight/2 + 0.95;
+  for(var s=0; s<14; s++){
+    var mat = new THREE.SpriteMaterial({ map:steamTex, transparent:true, opacity:0, depthWrite:false, blending:THREE.AdditiveBlending, color:0xf4cd7d });
+    var sprite = new THREE.Sprite(mat);
+    var scale = 0.5 + Math.random()*0.6;
+    sprite.scale.set(scale, scale, 1);
+    var data = {
+      sprite: sprite,
+      baseX: (Math.random()-0.5)*0.5,
+      baseZ: (Math.random()-0.5)*0.5,
+      speed: 0.35 + Math.random()*0.35,
+      life: Math.random(),
+      freq: 0.6 + Math.random()*0.8,
+      phase: Math.random()*Math.PI*2
+    };
+    steamParticles.push(data);
+    tiffin.add(sprite);
+  }
+
+  function updateSteam(dt, elapsed){
+    steamParticles.forEach(function(p){
+      p.life += dt*p.speed*0.35;
+      if(p.life > 1) p.life -= 1;
+      var y = steamOriginY + p.life*1.8;
+      var drift = Math.sin(elapsed*p.freq + p.phase)*0.25*p.life;
+      p.sprite.position.set(p.baseX+drift, y, p.baseZ+drift*0.6);
+      var op = Math.sin(p.life*Math.PI);
+      p.sprite.material.opacity = op*0.45;
+      p.sprite.scale.set(0.5+p.life*0.9, 0.5+p.life*0.9, 1);
+    });
+  }
+
+  /* Interaction: drag to spin + mouse parallax */
+  var targetRotY = 0, currentRotY = 0;
+  var targetRotX = 0, currentRotX = 0;
+  var isDragging = false, lastX = 0, dragRotY = 0;
+
+  function onPointerMove(clientX, clientY){
+    var r = visual.getBoundingClientRect();
+    var nx = ((clientX - r.left)/r.width)*2 - 1;
+    var ny = ((clientY - r.top)/r.height)*2 - 1;
+    targetRotX = ny*0.15;
+    if(!isDragging){ targetRotY = nx*0.4; }
+  }
+  window.addEventListener('mousemove', function(e){ onPointerMove(e.clientX, e.clientY); });
+
+  canvas.addEventListener('pointerdown', function(e){
+    isDragging = true; lastX = e.clientX; canvas.setPointerCapture(e.pointerId);
+  });
+  canvas.addEventListener('pointermove', function(e){
+    if(!isDragging) return;
+    var dx = e.clientX - lastX; lastX = e.clientX;
+    dragRotY += dx*0.01;
+  });
+  window.addEventListener('pointerup', function(){ isDragging = false; });
+
+  /* Resize */
+  function resize(){
+    var w = visual.clientWidth, h = visual.clientHeight;
+    camera.aspect = w/h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  var clock = new THREE.Clock();
+  var autoRotate = !reducedMotion;
+
+  function animate(){
+    requestAnimationFrame(animate);
+    var dt = Math.min(clock.getDelta(), 0.05);
+    var elapsed = clock.elapsedTime;
+
+    currentRotY += (targetRotY - currentRotY)*0.06;
+    currentRotX += (targetRotX - currentRotX)*0.06;
+
+    tiffin.rotation.y = currentRotY + dragRotY + (autoRotate ? elapsed*0.22 : 0);
+    tiffin.rotation.x = currentRotX;
+    tiffin.position.y = -0.2 + Math.sin(elapsed*0.7)*0.06;
+
+    updateSteam(dt, elapsed);
+
+    renderer.render(scene, camera);
+  }
+  animate();
+
+})();
+</script>
+
+</body>
+</html>
